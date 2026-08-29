@@ -54,6 +54,10 @@ pytest
 
 Outputs land in `artifacts/` (`eval.json`, `report.md`, `trajectories/*.json`).
 
+**Judges:** committed representative traces are in `examples/` — `eval.json`, `report.md`, and `trajectories/agent_fixtures.json`.
+These files come from a real run of `php_upgrade_agent eval` and `php_upgrade_agent agent fixtures/` in the cloud VM.
+`artifacts/` stays gitignored for local runs; use `examples/` when reviewing on GitHub.
+
 ## Architecture
 
 ```

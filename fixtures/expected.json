@@ -57,7 +57,7 @@
         { "rule_id": "each", "line": 10 },
         { "rule_id": "filter_sanitize_string", "line": 11 },
         { "rule_id": "strftime", "line": 12 },
-        { "rule_id": "implicit_nullable", "line": 17 }
+        { "rule_id": "implicit_nullable", "line": 18 }
       ]
     }
   ]

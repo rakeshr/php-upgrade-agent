@@ -1,0 +1,1156 @@
+{
+  "target": "/workspace/fixtures",
+  "trajectory": [
+    {
+      "step": "plan",
+      "message": "Enumerate PHP files and token-scan each one"
+    },
+    {
+      "step": "list_php_files",
+      "files": [
+        "clean_file.php",
+        "create_function.php",
+        "dollar_brace_var.php",
+        "each_removed.php",
+        "false_positive_comment.php",
+        "filter_sanitize_string.php",
+        "implicit_nullable.php",
+        "multi_issue.php",
+        "mysql_legacy.php",
+        "strftime_deprecated.php",
+        "utf8_encode.php",
+        "wordpress_plugin.php"
+      ]
+    },
+    {
+      "step": "plan",
+      "message": "Token-scan clean_file.php"
+    },
+    {
+      "step": "scan_tokens",
+      "path": "clean_file.php",
+      "findings": []
+    },
+    {
+      "step": "plan",
+      "message": "Token-scan create_function.php"
+    },
+    {
+      "step": "scan_tokens",
+      "path": "create_function.php",
+      "findings": [
+        {
+          "file": "create_function.php",
+          "line": 7,
+          "rule_id": "create_function",
+          "message": "create_function() was removed in PHP 8.0; use anonymous functions",
+          "severity": "error",
+          "snippet": "    add_filter('the_content', create_function('$content', 'return strtoupper($content);'));",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "step": "record_finding",
+      "finding": {
+        "file": "create_function.php",
+        "line": 7,
+        "rule_id": "create_function",
+        "message": "create_function() was removed in PHP 8.0; use anonymous functions",
+        "severity": "error",
+        "snippet": "    add_filter('the_content', create_function('$content', 'return strtoupper($content);'));",
+        "verified": false
+      }
+    },
+    {
+      "step": "plan",
+      "message": "Token-scan dollar_brace_var.php"
+    },
+    {
+      "step": "scan_tokens",
+      "path": "dollar_brace_var.php",
+      "findings": [
+        {
+          "file": "dollar_brace_var.php",
+          "line": 4,
+          "rule_id": "dollar_brace_var",
+          "message": "${var} string interpolation deprecated in PHP 8.2; use {$var}",
+          "severity": "warning",
+          "snippet": "    $message = \"Hello ${name}, welcome back.\";",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "step": "record_finding",
+      "finding": {
+        "file": "dollar_brace_var.php",
+        "line": 4,
+        "rule_id": "dollar_brace_var",
+        "message": "${var} string interpolation deprecated in PHP 8.2; use {$var}",
+        "severity": "warning",
+        "snippet": "    $message = \"Hello ${name}, welcome back.\";",
+        "verified": false
+      }
+    },
+    {
+      "step": "plan",
+      "message": "Token-scan each_removed.php"
+    },
+    {
+      "step": "scan_tokens",
+      "path": "each_removed.php",
+      "findings": [
+        {
+          "file": "each_removed.php",
+          "line": 4,
+          "rule_id": "each",
+          "message": "each() was removed in PHP 8.0; use foreach",
+          "severity": "error",
+          "snippet": "    while (list($key, $value) = each($items)) {",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "step": "record_finding",
+      "finding": {
+        "file": "each_removed.php",
+        "line": 4,
+        "rule_id": "each",
+        "message": "each() was removed in PHP 8.0; use foreach",
+        "severity": "error",
+        "snippet": "    while (list($key, $value) = each($items)) {",
+        "verified": false
+      }
+    },
+    {
+      "step": "plan",
+      "message": "Token-scan false_positive_comment.php"
+    },
+    {
+      "step": "scan_tokens",
+      "path": "false_positive_comment.php",
+      "findings": []
+    },
+    {
+      "step": "plan",
+      "message": "Token-scan filter_sanitize_string.php"
+    },
+    {
+      "step": "scan_tokens",
+      "path": "filter_sanitize_string.php",
+      "findings": [
+        {
+          "file": "filter_sanitize_string.php",
+          "line": 4,
+          "rule_id": "filter_sanitize_string",
+          "message": "FILTER_SANITIZE_STRING removed in PHP 8.1; use htmlspecialchars or custom filter",
+          "severity": "error",
+          "snippet": "    return filter_var($raw, FILTER_SANITIZE_STRING);",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "step": "record_finding",
+      "finding": {
+        "file": "filter_sanitize_string.php",
+        "line": 4,
+        "rule_id": "filter_sanitize_string",
+        "message": "FILTER_SANITIZE_STRING removed in PHP 8.1; use htmlspecialchars or custom filter",
+        "severity": "error",
+        "snippet": "    return filter_var($raw, FILTER_SANITIZE_STRING);",
+        "verified": false
+      }
+    },
+    {
+      "step": "plan",
+      "message": "Token-scan implicit_nullable.php"
+    },
+    {
+      "step": "scan_tokens",
+      "path": "implicit_nullable.php",
+      "findings": [
+        {
+          "file": "implicit_nullable.php",
+          "line": 3,
+          "rule_id": "implicit_nullable",
+          "message": "Implicit nullable parameter types deprecated in PHP 8.4; use ?Type",
+          "severity": "warning",
+          "snippet": "function save_meta(string $key, string $value = null): void {",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "step": "record_finding",
+      "finding": {
+        "file": "implicit_nullable.php",
+        "line": 3,
+        "rule_id": "implicit_nullable",
+        "message": "Implicit nullable parameter types deprecated in PHP 8.4; use ?Type",
+        "severity": "warning",
+        "snippet": "function save_meta(string $key, string $value = null): void {",
+        "verified": false
+      }
+    },
+    {
+      "step": "plan",
+      "message": "Token-scan multi_issue.php"
+    },
+    {
+      "step": "scan_tokens",
+      "path": "multi_issue.php",
+      "findings": [
+        {
+          "file": "multi_issue.php",
+          "line": 4,
+          "rule_id": "mysql_extension",
+          "message": "mysql_* functions were removed in PHP 7.0; use mysqli or PDO",
+          "severity": "error",
+          "snippet": "    $link = mysql_connect('db', 'wp', 'pass');",
+          "verified": true
+        },
+        {
+          "file": "multi_issue.php",
+          "line": 5,
+          "rule_id": "mysql_extension",
+          "message": "mysql_* functions were removed in PHP 7.0; use mysqli or PDO",
+          "severity": "error",
+          "snippet": "    mysql_select_db('clientsite', $link);",
+          "verified": true
+        },
+        {
+          "file": "multi_issue.php",
+          "line": 7,
+          "rule_id": "create_function",
+          "message": "create_function() was removed in PHP 8.0; use anonymous functions",
+          "severity": "error",
+          "snippet": "    $handler = create_function('$x', 'return strtoupper($x);');",
+          "verified": true
+        },
+        {
+          "file": "multi_issue.php",
+          "line": 8,
+          "rule_id": "utf8_encode",
+          "message": "utf8_encode/decode deprecated in 8.2, removed in 8.4; use mb_convert_encoding",
+          "severity": "warning",
+          "snippet": "    $title = utf8_encode(\"Launch ${brand}\");",
+          "verified": true
+        },
+        {
+          "file": "multi_issue.php",
+          "line": 8,
+          "rule_id": "dollar_brace_var",
+          "message": "${var} string interpolation deprecated in PHP 8.2; use {$var}",
+          "severity": "warning",
+          "snippet": "    $title = utf8_encode(\"Launch ${brand}\");",
+          "verified": true
+        },
+        {
+          "file": "multi_issue.php",
+          "line": 10,
+          "rule_id": "each",
+          "message": "each() was removed in PHP 8.0; use foreach",
+          "severity": "error",
+          "snippet": "    while (list(, $row) = each($_POST)) {",
+          "verified": true
+        },
+        {
+          "file": "multi_issue.php",
+          "line": 12,
+          "rule_id": "strftime",
+          "message": "strftime() deprecated in PHP 8.1; use IntlDateFormatter or DateTime::format",
+          "severity": "warning",
+          "snippet": "        echo strftime('%Y-%m-%d', time()) . $clean;",
+          "verified": true
+        },
+        {
+          "file": "multi_issue.php",
+          "line": 11,
+          "rule_id": "filter_sanitize_string",
+          "message": "FILTER_SANITIZE_STRING removed in PHP 8.1; use htmlspecialchars or custom filter",
+          "severity": "error",
+          "snippet": "        $clean = filter_var($row, FILTER_SANITIZE_STRING);",
+          "verified": true
+        },
+        {
+          "file": "multi_issue.php",
+          "line": 15,
+          "rule_id": "mysql_extension",
+          "message": "mysql_* functions were removed in PHP 7.0; use mysqli or PDO",
+          "severity": "error",
+          "snippet": "    mysql_close($link);",
+          "verified": true
+        },
+        {
+          "file": "multi_issue.php",
+          "line": 18,
+          "rule_id": "implicit_nullable",
+          "message": "Implicit nullable parameter types deprecated in PHP 8.4; use ?Type",
+          "severity": "warning",
+          "snippet": "function legacy_optional(string $note = null): void {",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "step": "record_finding",
+      "finding": {
+        "file": "multi_issue.php",
+        "line": 4,
+        "rule_id": "mysql_extension",
+        "message": "mysql_* functions were removed in PHP 7.0; use mysqli or PDO",
+        "severity": "error",
+        "snippet": "    $link = mysql_connect('db', 'wp', 'pass');",
+        "verified": false
+      }
+    },
+    {
+      "step": "record_finding",
+      "finding": {
+        "file": "multi_issue.php",
+        "line": 5,
+        "rule_id": "mysql_extension",
+        "message": "mysql_* functions were removed in PHP 7.0; use mysqli or PDO",
+        "severity": "error",
+        "snippet": "    mysql_select_db('clientsite', $link);",
+        "verified": false
+      }
+    },
+    {
+      "step": "record_finding",
+      "finding": {
+        "file": "multi_issue.php",
+        "line": 7,
+        "rule_id": "create_function",
+        "message": "create_function() was removed in PHP 8.0; use anonymous functions",
+        "severity": "error",
+        "snippet": "    $handler = create_function('$x', 'return strtoupper($x);');",
+        "verified": false
+      }
+    },
+    {
+      "step": "record_finding",
+      "finding": {
+        "file": "multi_issue.php",
+        "line": 8,
+        "rule_id": "utf8_encode",
+        "message": "utf8_encode/decode deprecated in 8.2, removed in 8.4; use mb_convert_encoding",
+        "severity": "warning",
+        "snippet": "    $title = utf8_encode(\"Launch ${brand}\");",
+        "verified": false
+      }
+    },
+    {
+      "step": "record_finding",
+      "finding": {
+        "file": "multi_issue.php",
+        "line": 8,
+        "rule_id": "dollar_brace_var",
+        "message": "${var} string interpolation deprecated in PHP 8.2; use {$var}",
+        "severity": "warning",
+        "snippet": "    $title = utf8_encode(\"Launch ${brand}\");",
+        "verified": false
+      }
+    },
+    {
+      "step": "record_finding",
+      "finding": {
+        "file": "multi_issue.php",
+        "line": 10,
+        "rule_id": "each",
+        "message": "each() was removed in PHP 8.0; use foreach",
+        "severity": "error",
+        "snippet": "    while (list(, $row) = each($_POST)) {",
+        "verified": false
+      }
+    },
+    {
+      "step": "record_finding",
+      "finding": {
+        "file": "multi_issue.php",
+        "line": 12,
+        "rule_id": "strftime",
+        "message": "strftime() deprecated in PHP 8.1; use IntlDateFormatter or DateTime::format",
+        "severity": "warning",
+        "snippet": "        echo strftime('%Y-%m-%d', time()) . $clean;",
+        "verified": false
+      }
+    },
+    {
+      "step": "record_finding",
+      "finding": {
+        "file": "multi_issue.php",
+        "line": 11,
+        "rule_id": "filter_sanitize_string",
+        "message": "FILTER_SANITIZE_STRING removed in PHP 8.1; use htmlspecialchars or custom filter",
+        "severity": "error",
+        "snippet": "        $clean = filter_var($row, FILTER_SANITIZE_STRING);",
+        "verified": false
+      }
+    },
+    {
+      "step": "record_finding",
+      "finding": {
+        "file": "multi_issue.php",
+        "line": 15,
+        "rule_id": "mysql_extension",
+        "message": "mysql_* functions were removed in PHP 7.0; use mysqli or PDO",
+        "severity": "error",
+        "snippet": "    mysql_close($link);",
+        "verified": false
+      }
+    },
+    {
+      "step": "record_finding",
+      "finding": {
+        "file": "multi_issue.php",
+        "line": 18,
+        "rule_id": "implicit_nullable",
+        "message": "Implicit nullable parameter types deprecated in PHP 8.4; use ?Type",
+        "severity": "warning",
+        "snippet": "function legacy_optional(string $note = null): void {",
+        "verified": false
+      }
+    },
+    {
+      "step": "plan",
+      "message": "Token-scan mysql_legacy.php"
+    },
+    {
+      "step": "scan_tokens",
+      "path": "mysql_legacy.php",
+      "findings": [
+        {
+          "file": "mysql_legacy.php",
+          "line": 4,
+          "rule_id": "mysql_extension",
+          "message": "mysql_* functions were removed in PHP 7.0; use mysqli or PDO",
+          "severity": "error",
+          "snippet": "    $link = mysql_connect('localhost', 'root', 'secret');",
+          "verified": true
+        },
+        {
+          "file": "mysql_legacy.php",
+          "line": 5,
+          "rule_id": "mysql_extension",
+          "message": "mysql_* functions were removed in PHP 7.0; use mysqli or PDO",
+          "severity": "error",
+          "snippet": "    mysql_select_db('wordpress', $link);",
+          "verified": true
+        },
+        {
+          "file": "mysql_legacy.php",
+          "line": 6,
+          "rule_id": "mysql_extension",
+          "message": "mysql_* functions were removed in PHP 7.0; use mysqli or PDO",
+          "severity": "error",
+          "snippet": "    $result = mysql_query('SELECT ID FROM wp_posts LIMIT 1', $link);",
+          "verified": true
+        },
+        {
+          "file": "mysql_legacy.php",
+          "line": 7,
+          "rule_id": "mysql_extension",
+          "message": "mysql_* functions were removed in PHP 7.0; use mysqli or PDO",
+          "severity": "error",
+          "snippet": "    $row = mysql_fetch_assoc($result);",
+          "verified": true
+        },
+        {
+          "file": "mysql_legacy.php",
+          "line": 8,
+          "rule_id": "mysql_extension",
+          "message": "mysql_* functions were removed in PHP 7.0; use mysqli or PDO",
+          "severity": "error",
+          "snippet": "    mysql_close($link);",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "step": "record_finding",
+      "finding": {
+        "file": "mysql_legacy.php",
+        "line": 4,
+        "rule_id": "mysql_extension",
+        "message": "mysql_* functions were removed in PHP 7.0; use mysqli or PDO",
+        "severity": "error",
+        "snippet": "    $link = mysql_connect('localhost', 'root', 'secret');",
+        "verified": false
+      }
+    },
+    {
+      "step": "record_finding",
+      "finding": {
+        "file": "mysql_legacy.php",
+        "line": 5,
+        "rule_id": "mysql_extension",
+        "message": "mysql_* functions were removed in PHP 7.0; use mysqli or PDO",
+        "severity": "error",
+        "snippet": "    mysql_select_db('wordpress', $link);",
+        "verified": false
+      }
+    },
+    {
+      "step": "record_finding",
+      "finding": {
+        "file": "mysql_legacy.php",
+        "line": 6,
+        "rule_id": "mysql_extension",
+        "message": "mysql_* functions were removed in PHP 7.0; use mysqli or PDO",
+        "severity": "error",
+        "snippet": "    $result = mysql_query('SELECT ID FROM wp_posts LIMIT 1', $link);",
+        "verified": false
+      }
+    },
+    {
+      "step": "record_finding",
+      "finding": {
+        "file": "mysql_legacy.php",
+        "line": 7,
+        "rule_id": "mysql_extension",
+        "message": "mysql_* functions were removed in PHP 7.0; use mysqli or PDO",
+        "severity": "error",
+        "snippet": "    $row = mysql_fetch_assoc($result);",
+        "verified": false
+      }
+    },
+    {
+      "step": "record_finding",
+      "finding": {
+        "file": "mysql_legacy.php",
+        "line": 8,
+        "rule_id": "mysql_extension",
+        "message": "mysql_* functions were removed in PHP 7.0; use mysqli or PDO",
+        "severity": "error",
+        "snippet": "    mysql_close($link);",
+        "verified": false
+      }
+    },
+    {
+      "step": "plan",
+      "message": "Token-scan strftime_deprecated.php"
+    },
+    {
+      "step": "scan_tokens",
+      "path": "strftime_deprecated.php",
+      "findings": [
+        {
+          "file": "strftime_deprecated.php",
+          "line": 4,
+          "rule_id": "strftime",
+          "message": "strftime() deprecated in PHP 8.1; use IntlDateFormatter or DateTime::format",
+          "severity": "warning",
+          "snippet": "    return strftime('%B %d, %Y', $timestamp);",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "step": "record_finding",
+      "finding": {
+        "file": "strftime_deprecated.php",
+        "line": 4,
+        "rule_id": "strftime",
+        "message": "strftime() deprecated in PHP 8.1; use IntlDateFormatter or DateTime::format",
+        "severity": "warning",
+        "snippet": "    return strftime('%B %d, %Y', $timestamp);",
+        "verified": false
+      }
+    },
+    {
+      "step": "plan",
+      "message": "Token-scan utf8_encode.php"
+    },
+    {
+      "step": "scan_tokens",
+      "path": "utf8_encode.php",
+      "findings": [
+        {
+          "file": "utf8_encode.php",
+          "line": 4,
+          "rule_id": "utf8_encode",
+          "message": "utf8_encode/decode deprecated in 8.2, removed in 8.4; use mb_convert_encoding",
+          "severity": "warning",
+          "snippet": "    return utf8_encode($title);",
+          "verified": true
+        },
+        {
+          "file": "utf8_encode.php",
+          "line": 8,
+          "rule_id": "utf8_encode",
+          "message": "utf8_encode/decode deprecated in 8.2, removed in 8.4; use mb_convert_encoding",
+          "severity": "warning",
+          "snippet": "    return utf8_decode($title);",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "step": "record_finding",
+      "finding": {
+        "file": "utf8_encode.php",
+        "line": 4,
+        "rule_id": "utf8_encode",
+        "message": "utf8_encode/decode deprecated in 8.2, removed in 8.4; use mb_convert_encoding",
+        "severity": "warning",
+        "snippet": "    return utf8_encode($title);",
+        "verified": false
+      }
+    },
+    {
+      "step": "record_finding",
+      "finding": {
+        "file": "utf8_encode.php",
+        "line": 8,
+        "rule_id": "utf8_encode",
+        "message": "utf8_encode/decode deprecated in 8.2, removed in 8.4; use mb_convert_encoding",
+        "severity": "warning",
+        "snippet": "    return utf8_decode($title);",
+        "verified": false
+      }
+    },
+    {
+      "step": "plan",
+      "message": "Token-scan wordpress_plugin.php"
+    },
+    {
+      "step": "scan_tokens",
+      "path": "wordpress_plugin.php",
+      "findings": []
+    },
+    {
+      "step": "plan",
+      "message": "Verify baseline-only hits; drop comment/string false positives"
+    },
+    {
+      "step": "mark_verified",
+      "file": "create_function.php",
+      "rule_id": "create_function",
+      "line": 4,
+      "keep": false
+    },
+    {
+      "step": "verify",
+      "action": "dropped_false_positive",
+      "file": "create_function.php",
+      "line": 4,
+      "rule_id": "create_function",
+      "kept": false
+    },
+    {
+      "step": "mark_verified",
+      "file": "create_function.php",
+      "rule_id": "create_function",
+      "line": 7,
+      "keep": true
+    },
+    {
+      "step": "mark_verified",
+      "file": "dollar_brace_var.php",
+      "rule_id": "dollar_brace_var",
+      "line": 4,
+      "keep": true
+    },
+    {
+      "step": "mark_verified",
+      "file": "each_removed.php",
+      "rule_id": "each",
+      "line": 4,
+      "keep": true
+    },
+    {
+      "step": "mark_verified",
+      "file": "false_positive_comment.php",
+      "rule_id": "create_function",
+      "line": 5,
+      "keep": false
+    },
+    {
+      "step": "verify",
+      "action": "dropped_false_positive",
+      "file": "false_positive_comment.php",
+      "line": 5,
+      "rule_id": "create_function",
+      "kept": false
+    },
+    {
+      "step": "mark_verified",
+      "file": "false_positive_comment.php",
+      "rule_id": "create_function",
+      "line": 9,
+      "keep": false
+    },
+    {
+      "step": "verify",
+      "action": "dropped_false_positive",
+      "file": "false_positive_comment.php",
+      "line": 9,
+      "rule_id": "create_function",
+      "kept": false
+    },
+    {
+      "step": "mark_verified",
+      "file": "false_positive_comment.php",
+      "rule_id": "mysql_extension",
+      "line": 5,
+      "keep": false
+    },
+    {
+      "step": "verify",
+      "action": "dropped_false_positive",
+      "file": "false_positive_comment.php",
+      "line": 5,
+      "rule_id": "mysql_extension",
+      "kept": false
+    },
+    {
+      "step": "mark_verified",
+      "file": "false_positive_comment.php",
+      "rule_id": "each",
+      "line": 5,
+      "keep": false
+    },
+    {
+      "step": "verify",
+      "action": "dropped_false_positive",
+      "file": "false_positive_comment.php",
+      "line": 5,
+      "rule_id": "each",
+      "kept": false
+    },
+    {
+      "step": "mark_verified",
+      "file": "false_positive_comment.php",
+      "rule_id": "each",
+      "line": 10,
+      "keep": false
+    },
+    {
+      "step": "verify",
+      "action": "dropped_false_positive",
+      "file": "false_positive_comment.php",
+      "line": 10,
+      "rule_id": "each",
+      "kept": false
+    },
+    {
+      "step": "mark_verified",
+      "file": "false_positive_comment.php",
+      "rule_id": "utf8_encode",
+      "line": 5,
+      "keep": false
+    },
+    {
+      "step": "verify",
+      "action": "dropped_false_positive",
+      "file": "false_positive_comment.php",
+      "line": 5,
+      "rule_id": "utf8_encode",
+      "kept": false
+    },
+    {
+      "step": "mark_verified",
+      "file": "false_positive_comment.php",
+      "rule_id": "strftime",
+      "line": 6,
+      "keep": false
+    },
+    {
+      "step": "verify",
+      "action": "dropped_false_positive",
+      "file": "false_positive_comment.php",
+      "line": 6,
+      "rule_id": "strftime",
+      "kept": false
+    },
+    {
+      "step": "mark_verified",
+      "file": "false_positive_comment.php",
+      "rule_id": "dollar_brace_var",
+      "line": 6,
+      "keep": false
+    },
+    {
+      "step": "verify",
+      "action": "dropped_false_positive",
+      "file": "false_positive_comment.php",
+      "line": 6,
+      "rule_id": "dollar_brace_var",
+      "kept": false
+    },
+    {
+      "step": "mark_verified",
+      "file": "false_positive_comment.php",
+      "rule_id": "filter_sanitize_string",
+      "line": 6,
+      "keep": false
+    },
+    {
+      "step": "verify",
+      "action": "dropped_false_positive",
+      "file": "false_positive_comment.php",
+      "line": 6,
+      "rule_id": "filter_sanitize_string",
+      "kept": false
+    },
+    {
+      "step": "mark_verified",
+      "file": "filter_sanitize_string.php",
+      "rule_id": "filter_sanitize_string",
+      "line": 4,
+      "keep": true
+    },
+    {
+      "step": "mark_verified",
+      "file": "implicit_nullable.php",
+      "rule_id": "implicit_nullable",
+      "line": 3,
+      "keep": true
+    },
+    {
+      "step": "mark_verified",
+      "file": "multi_issue.php",
+      "rule_id": "create_function",
+      "line": 7,
+      "keep": true
+    },
+    {
+      "step": "mark_verified",
+      "file": "multi_issue.php",
+      "rule_id": "mysql_extension",
+      "line": 4,
+      "keep": true
+    },
+    {
+      "step": "mark_verified",
+      "file": "multi_issue.php",
+      "rule_id": "mysql_extension",
+      "line": 5,
+      "keep": true
+    },
+    {
+      "step": "mark_verified",
+      "file": "multi_issue.php",
+      "rule_id": "mysql_extension",
+      "line": 15,
+      "keep": true
+    },
+    {
+      "step": "mark_verified",
+      "file": "multi_issue.php",
+      "rule_id": "each",
+      "line": 10,
+      "keep": true
+    },
+    {
+      "step": "mark_verified",
+      "file": "multi_issue.php",
+      "rule_id": "utf8_encode",
+      "line": 8,
+      "keep": true
+    },
+    {
+      "step": "mark_verified",
+      "file": "multi_issue.php",
+      "rule_id": "strftime",
+      "line": 12,
+      "keep": true
+    },
+    {
+      "step": "mark_verified",
+      "file": "multi_issue.php",
+      "rule_id": "dollar_brace_var",
+      "line": 8,
+      "keep": true
+    },
+    {
+      "step": "mark_verified",
+      "file": "multi_issue.php",
+      "rule_id": "implicit_nullable",
+      "line": 18,
+      "keep": true
+    },
+    {
+      "step": "mark_verified",
+      "file": "multi_issue.php",
+      "rule_id": "filter_sanitize_string",
+      "line": 11,
+      "keep": true
+    },
+    {
+      "step": "mark_verified",
+      "file": "mysql_legacy.php",
+      "rule_id": "mysql_extension",
+      "line": 4,
+      "keep": true
+    },
+    {
+      "step": "mark_verified",
+      "file": "mysql_legacy.php",
+      "rule_id": "mysql_extension",
+      "line": 5,
+      "keep": true
+    },
+    {
+      "step": "mark_verified",
+      "file": "mysql_legacy.php",
+      "rule_id": "mysql_extension",
+      "line": 6,
+      "keep": true
+    },
+    {
+      "step": "mark_verified",
+      "file": "mysql_legacy.php",
+      "rule_id": "mysql_extension",
+      "line": 7,
+      "keep": true
+    },
+    {
+      "step": "mark_verified",
+      "file": "mysql_legacy.php",
+      "rule_id": "mysql_extension",
+      "line": 8,
+      "keep": true
+    },
+    {
+      "step": "mark_verified",
+      "file": "strftime_deprecated.php",
+      "rule_id": "strftime",
+      "line": 4,
+      "keep": true
+    },
+    {
+      "step": "mark_verified",
+      "file": "utf8_encode.php",
+      "rule_id": "utf8_encode",
+      "line": 4,
+      "keep": true
+    },
+    {
+      "step": "mark_verified",
+      "file": "utf8_encode.php",
+      "rule_id": "utf8_encode",
+      "line": 8,
+      "keep": true
+    },
+    {
+      "step": "write_report",
+      "decision": "NO-GO",
+      "finding_count": 23
+    }
+  ],
+  "report": "# PHP Upgrade Readiness Report\n\n**Decision:** NO-GO\n\nFound 14 blocking error(s) and 9 warning(s). Resolve errors before upgrading to PHP 8.3+.\n\nFiles scanned: 12\nIssues found: 23\n\n## Issues\n\n- `create_function.php:7` [error] **create_function** \u2014 create_function() was removed in PHP 8.0; use anonymous functions\n  ```php\n  add_filter('the_content', create_function('$content', 'return strtoupper($content);'));\n  ```\n- `dollar_brace_var.php:4` [warning] **dollar_brace_var** \u2014 ${var} string interpolation deprecated in PHP 8.2; use {$var}\n  ```php\n  $message = \"Hello ${name}, welcome back.\";\n  ```\n- `each_removed.php:4` [error] **each** \u2014 each() was removed in PHP 8.0; use foreach\n  ```php\n  while (list($key, $value) = each($items)) {\n  ```\n- `filter_sanitize_string.php:4` [error] **filter_sanitize_string** \u2014 FILTER_SANITIZE_STRING removed in PHP 8.1; use htmlspecialchars or custom filter\n  ```php\n  return filter_var($raw, FILTER_SANITIZE_STRING);\n  ```\n- `implicit_nullable.php:3` [warning] **implicit_nullable** \u2014 Implicit nullable parameter types deprecated in PHP 8.4; use ?Type\n  ```php\n  function save_meta(string $key, string $value = null): void {\n  ```\n- `multi_issue.php:4` [error] **mysql_extension** \u2014 mysql_* functions were removed in PHP 7.0; use mysqli or PDO\n  ```php\n  $link = mysql_connect('db', 'wp', 'pass');\n  ```\n- `multi_issue.php:5` [error] **mysql_extension** \u2014 mysql_* functions were removed in PHP 7.0; use mysqli or PDO\n  ```php\n  mysql_select_db('clientsite', $link);\n  ```\n- `multi_issue.php:7` [error] **create_function** \u2014 create_function() was removed in PHP 8.0; use anonymous functions\n  ```php\n  $handler = create_function('$x', 'return strtoupper($x);');\n  ```\n- `multi_issue.php:8` [warning] **dollar_brace_var** \u2014 ${var} string interpolation deprecated in PHP 8.2; use {$var}\n  ```php\n  $title = utf8_encode(\"Launch ${brand}\");\n  ```\n- `multi_issue.php:8` [warning] **utf8_encode** \u2014 utf8_encode/decode deprecated in 8.2, removed in 8.4; use mb_convert_encoding\n  ```php\n  $title = utf8_encode(\"Launch ${brand}\");\n  ```\n- `multi_issue.php:10` [error] **each** \u2014 each() was removed in PHP 8.0; use foreach\n  ```php\n  while (list(, $row) = each($_POST)) {\n  ```\n- `multi_issue.php:11` [error] **filter_sanitize_string** \u2014 FILTER_SANITIZE_STRING removed in PHP 8.1; use htmlspecialchars or custom filter\n  ```php\n  $clean = filter_var($row, FILTER_SANITIZE_STRING);\n  ```\n- `multi_issue.php:12` [warning] **strftime** \u2014 strftime() deprecated in PHP 8.1; use IntlDateFormatter or DateTime::format\n  ```php\n  echo strftime('%Y-%m-%d', time()) . $clean;\n  ```\n- `multi_issue.php:15` [error] **mysql_extension** \u2014 mysql_* functions were removed in PHP 7.0; use mysqli or PDO\n  ```php\n  mysql_close($link);\n  ```\n- `multi_issue.php:18` [warning] **implicit_nullable** \u2014 Implicit nullable parameter types deprecated in PHP 8.4; use ?Type\n  ```php\n  function legacy_optional(string $note = null): void {\n  ```\n- `mysql_legacy.php:4` [error] **mysql_extension** \u2014 mysql_* functions were removed in PHP 7.0; use mysqli or PDO\n  ```php\n  $link = mysql_connect('localhost', 'root', 'secret');\n  ```\n- `mysql_legacy.php:5` [error] **mysql_extension** \u2014 mysql_* functions were removed in PHP 7.0; use mysqli or PDO\n  ```php\n  mysql_select_db('wordpress', $link);\n  ```\n- `mysql_legacy.php:6` [error] **mysql_extension** \u2014 mysql_* functions were removed in PHP 7.0; use mysqli or PDO\n  ```php\n  $result = mysql_query('SELECT ID FROM wp_posts LIMIT 1', $link);\n  ```\n- `mysql_legacy.php:7` [error] **mysql_extension** \u2014 mysql_* functions were removed in PHP 7.0; use mysqli or PDO\n  ```php\n  $row = mysql_fetch_assoc($result);\n  ```\n- `mysql_legacy.php:8` [error] **mysql_extension** \u2014 mysql_* functions were removed in PHP 7.0; use mysqli or PDO\n  ```php\n  mysql_close($link);\n  ```\n- `strftime_deprecated.php:4` [warning] **strftime** \u2014 strftime() deprecated in PHP 8.1; use IntlDateFormatter or DateTime::format\n  ```php\n  return strftime('%B %d, %Y', $timestamp);\n  ```\n- `utf8_encode.php:4` [warning] **utf8_encode** \u2014 utf8_encode/decode deprecated in 8.2, removed in 8.4; use mb_convert_encoding\n  ```php\n  return utf8_encode($title);\n  ```\n- `utf8_encode.php:8` [warning] **utf8_encode** \u2014 utf8_encode/decode deprecated in 8.2, removed in 8.4; use mb_convert_encoding\n  ```php\n  return utf8_decode($title);\n  ```\n",
+  "findings": [
+    {
+      "file": "create_function.php",
+      "line": 7,
+      "rule_id": "create_function",
+      "message": "create_function() was removed in PHP 8.0; use anonymous functions",
+      "severity": "error",
+      "snippet": "    add_filter('the_content', create_function('$content', 'return strtoupper($content);'));",
+      "verified": true
+    },
+    {
+      "file": "dollar_brace_var.php",
+      "line": 4,
+      "rule_id": "dollar_brace_var",
+      "message": "${var} string interpolation deprecated in PHP 8.2; use {$var}",
+      "severity": "warning",
+      "snippet": "    $message = \"Hello ${name}, welcome back.\";",
+      "verified": true
+    },
+    {
+      "file": "each_removed.php",
+      "line": 4,
+      "rule_id": "each",
+      "message": "each() was removed in PHP 8.0; use foreach",
+      "severity": "error",
+      "snippet": "    while (list($key, $value) = each($items)) {",
+      "verified": true
+    },
+    {
+      "file": "filter_sanitize_string.php",
+      "line": 4,
+      "rule_id": "filter_sanitize_string",
+      "message": "FILTER_SANITIZE_STRING removed in PHP 8.1; use htmlspecialchars or custom filter",
+      "severity": "error",
+      "snippet": "    return filter_var($raw, FILTER_SANITIZE_STRING);",
+      "verified": true
+    },
+    {
+      "file": "implicit_nullable.php",
+      "line": 3,
+      "rule_id": "implicit_nullable",
+      "message": "Implicit nullable parameter types deprecated in PHP 8.4; use ?Type",
+      "severity": "warning",
+      "snippet": "function save_meta(string $key, string $value = null): void {",
+      "verified": true
+    },
+    {
+      "file": "multi_issue.php",
+      "line": 4,
+      "rule_id": "mysql_extension",
+      "message": "mysql_* functions were removed in PHP 7.0; use mysqli or PDO",
+      "severity": "error",
+      "snippet": "    $link = mysql_connect('db', 'wp', 'pass');",
+      "verified": true
+    },
+    {
+      "file": "multi_issue.php",
+      "line": 5,
+      "rule_id": "mysql_extension",
+      "message": "mysql_* functions were removed in PHP 7.0; use mysqli or PDO",
+      "severity": "error",
+      "snippet": "    mysql_select_db('clientsite', $link);",
+      "verified": true
+    },
+    {
+      "file": "multi_issue.php",
+      "line": 7,
+      "rule_id": "create_function",
+      "message": "create_function() was removed in PHP 8.0; use anonymous functions",
+      "severity": "error",
+      "snippet": "    $handler = create_function('$x', 'return strtoupper($x);');",
+      "verified": true
+    },
+    {
+      "file": "multi_issue.php",
+      "line": 8,
+      "rule_id": "dollar_brace_var",
+      "message": "${var} string interpolation deprecated in PHP 8.2; use {$var}",
+      "severity": "warning",
+      "snippet": "    $title = utf8_encode(\"Launch ${brand}\");",
+      "verified": true
+    },
+    {
+      "file": "multi_issue.php",
+      "line": 8,
+      "rule_id": "utf8_encode",
+      "message": "utf8_encode/decode deprecated in 8.2, removed in 8.4; use mb_convert_encoding",
+      "severity": "warning",
+      "snippet": "    $title = utf8_encode(\"Launch ${brand}\");",
+      "verified": true
+    },
+    {
+      "file": "multi_issue.php",
+      "line": 10,
+      "rule_id": "each",
+      "message": "each() was removed in PHP 8.0; use foreach",
+      "severity": "error",
+      "snippet": "    while (list(, $row) = each($_POST)) {",
+      "verified": true
+    },
+    {
+      "file": "multi_issue.php",
+      "line": 11,
+      "rule_id": "filter_sanitize_string",
+      "message": "FILTER_SANITIZE_STRING removed in PHP 8.1; use htmlspecialchars or custom filter",
+      "severity": "error",
+      "snippet": "        $clean = filter_var($row, FILTER_SANITIZE_STRING);",
+      "verified": true
+    },
+    {
+      "file": "multi_issue.php",
+      "line": 12,
+      "rule_id": "strftime",
+      "message": "strftime() deprecated in PHP 8.1; use IntlDateFormatter or DateTime::format",
+      "severity": "warning",
+      "snippet": "        echo strftime('%Y-%m-%d', time()) . $clean;",
+      "verified": true
+    },
+    {
+      "file": "multi_issue.php",
+      "line": 15,
+      "rule_id": "mysql_extension",
+      "message": "mysql_* functions were removed in PHP 7.0; use mysqli or PDO",
+      "severity": "error",
+      "snippet": "    mysql_close($link);",
+      "verified": true
+    },
+    {
+      "file": "multi_issue.php",
+      "line": 18,
+      "rule_id": "implicit_nullable",
+      "message": "Implicit nullable parameter types deprecated in PHP 8.4; use ?Type",
+      "severity": "warning",
+      "snippet": "function legacy_optional(string $note = null): void {",
+      "verified": true
+    },
+    {
+      "file": "mysql_legacy.php",
+      "line": 4,
+      "rule_id": "mysql_extension",
+      "message": "mysql_* functions were removed in PHP 7.0; use mysqli or PDO",
+      "severity": "error",
+      "snippet": "    $link = mysql_connect('localhost', 'root', 'secret');",
+      "verified": true
+    },
+    {
+      "file": "mysql_legacy.php",
+      "line": 5,
+      "rule_id": "mysql_extension",
+      "message": "mysql_* functions were removed in PHP 7.0; use mysqli or PDO",
+      "severity": "error",
+      "snippet": "    mysql_select_db('wordpress', $link);",
+      "verified": true
+    },
+    {
+      "file": "mysql_legacy.php",
+      "line": 6,
+      "rule_id": "mysql_extension",
+      "message": "mysql_* functions were removed in PHP 7.0; use mysqli or PDO",
+      "severity": "error",
+      "snippet": "    $result = mysql_query('SELECT ID FROM wp_posts LIMIT 1', $link);",
+      "verified": true
+    },
+    {
+      "file": "mysql_legacy.php",
+      "line": 7,
+      "rule_id": "mysql_extension",
+      "message": "mysql_* functions were removed in PHP 7.0; use mysqli or PDO",
+      "severity": "error",
+      "snippet": "    $row = mysql_fetch_assoc($result);",
+      "verified": true
+    },
+    {
+      "file": "mysql_legacy.php",
+      "line": 8,
+      "rule_id": "mysql_extension",
+      "message": "mysql_* functions were removed in PHP 7.0; use mysqli or PDO",
+      "severity": "error",
+      "snippet": "    mysql_close($link);",
+      "verified": true
+    },
+    {
+      "file": "strftime_deprecated.php",
+      "line": 4,
+      "rule_id": "strftime",
+      "message": "strftime() deprecated in PHP 8.1; use IntlDateFormatter or DateTime::format",
+      "severity": "warning",
+      "snippet": "    return strftime('%B %d, %Y', $timestamp);",
+      "verified": true
+    },
+    {
+      "file": "utf8_encode.php",
+      "line": 4,
+      "rule_id": "utf8_encode",
+      "message": "utf8_encode/decode deprecated in 8.2, removed in 8.4; use mb_convert_encoding",
+      "severity": "warning",
+      "snippet": "    return utf8_encode($title);",
+      "verified": true
+    },
+    {
+      "file": "utf8_encode.php",
+      "line": 8,
+      "rule_id": "utf8_encode",
+      "message": "utf8_encode/decode deprecated in 8.2, removed in 8.4; use mb_convert_encoding",
+      "severity": "warning",
+      "snippet": "    return utf8_decode($title);",
+      "verified": true
+    }
+  ]
+}
