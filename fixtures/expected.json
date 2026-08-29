@@ -1,0 +1,64 @@
+{
+  "fixtures": [
+    {
+      "file": "create_function.php",
+      "issues": [{ "rule_id": "create_function", "line": 7 }]
+    },
+    {
+      "file": "mysql_legacy.php",
+      "issues": [{ "rule_id": "mysql_extension", "line": 4 }]
+    },
+    {
+      "file": "each_removed.php",
+      "issues": [{ "rule_id": "each", "line": 4 }]
+    },
+    {
+      "file": "utf8_encode.php",
+      "issues": [
+        { "rule_id": "utf8_encode", "line": 4 },
+        { "rule_id": "utf8_encode", "line": 8 }
+      ]
+    },
+    {
+      "file": "strftime_deprecated.php",
+      "issues": [{ "rule_id": "strftime", "line": 4 }]
+    },
+    {
+      "file": "dollar_brace_var.php",
+      "issues": [{ "rule_id": "dollar_brace_var", "line": 4 }]
+    },
+    {
+      "file": "implicit_nullable.php",
+      "issues": [{ "rule_id": "implicit_nullable", "line": 3 }]
+    },
+    {
+      "file": "filter_sanitize_string.php",
+      "issues": [{ "rule_id": "filter_sanitize_string", "line": 4 }]
+    },
+    {
+      "file": "clean_file.php",
+      "issues": []
+    },
+    {
+      "file": "false_positive_comment.php",
+      "issues": []
+    },
+    {
+      "file": "wordpress_plugin.php",
+      "issues": []
+    },
+    {
+      "file": "multi_issue.php",
+      "issues": [
+        { "rule_id": "mysql_extension", "line": 4 },
+        { "rule_id": "create_function", "line": 7 },
+        { "rule_id": "utf8_encode", "line": 8 },
+        { "rule_id": "dollar_brace_var", "line": 8 },
+        { "rule_id": "each", "line": 10 },
+        { "rule_id": "filter_sanitize_string", "line": 11 },
+        { "rule_id": "strftime", "line": 12 },
+        { "rule_id": "implicit_nullable", "line": 17 }
+      ]
+    }
+  ]
+}
